@@ -1,0 +1,45 @@
+.Admin_app{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+.Admin_header{
+height: 60px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px 20px 4px 12px;
+border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+.Admin_footer{
+height: 50px;
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.SlidemenuandPagecontent{
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.Admin_sidemenu_vertical{
+    height: 100%;
+}
+
+.Admin_sidemenu{
+    height: 100%;
+}
+.Admin_pagecontent{
+    padding-left: 12px;
+
+}
+.order_page{
+
+    padding-left: 12px;
+}

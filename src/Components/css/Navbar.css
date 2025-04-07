@@ -1,0 +1,68 @@
+/* Transparent Navbar */
+.navbar {
+    background: rgba(0, 0, 0, 0.6); 
+    backdrop-filter: blur(3px);
+    padding: 12px 20px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Brand Text */
+  .brand-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffcc00;
+    text-shadow: 2px 2px 4px rgba(255, 204, 0, 0.5);
+  }
+  
+  /* Navigation Links */
+  .navbar-nav .custom-nav-link {
+    color: #ffcc00;
+    font-weight: 500;
+    margin: 0 10px;
+    transition: all 0.3s;
+  }
+  
+  .navbar-nav .custom-nav-link:hover {
+    color: #fff;
+  }
+  
+  /* Profile Dropdown */
+  .profile-btn {
+    color: #ffcc00;
+    font-weight: 500;
+  }
+  
+  /* Login & Register Buttons */
+  .login-btn, .register-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: all 0.3s;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  /* Login Button */
+  .login-btn {
+    background: #ffcc00;
+    color: #000;
+    border: 2px solid #ffcc00;
+  }
+  
+  .login-btn:hover {
+    background: #e6b800;
+    color: #000;
+  }
+  
+  /* Register Button */
+  .register-btn {
+    background: transparent;
+    color: #ffcc00;
+    border: 2px solid #ffcc00;
+  }
+  
+  .register-btn:hover {
+    background: #ffcc00;
+    color: #000;
+  }
+  
