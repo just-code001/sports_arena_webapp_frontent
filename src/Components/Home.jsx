@@ -6,12 +6,13 @@ const Register = () => {
   return (
     <div
       className="min-vh-100 d-flex align-items-center justify-content-center"
-      style={{ 
-        backgroundImage: `url(${background})`, 
-        backgroundSize: "cover", 
-        backgroundPosition: "center", 
-        backdropFilter: "blur(5px)"
-      }}
+    //   style={{ 
+    //     backgroundImage: `url(${background})`, 
+    //     backgroundSize: "cover", 
+    //     backgroundPosition: "center", 
+    //     backdropFilter: "blur(5px)",
+    //     top:"0"
+    //   }}
     >
       <div className="p-5 rounded-4 shadow-lg w-100" style={{
         maxWidth: "420px",
