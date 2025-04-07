@@ -1,0 +1,95 @@
+.contact-page-bg {
+    background-image: url('./../../Photos/game3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Card for both form and info */
+  .contact-card {
+
+    /* background: "linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 51, 102, 0.8))", */
+    
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 51, 102, 0.8)); /* Soft blue to white gradient */
+    border: none;
+    border-radius: 16px;
+    opacity: 0.95; /* Slight transparency */
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px); /* Slight blur effect behind card */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Light shadow */
+  }
+  
+  .contact-card:hover {
+    opacity: 1;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  
+  /* Form inside card */
+  .contact-card form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Make label left aligned, slightly bold */
+  .contact-card form label {
+    text-align: left;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #ddff04;
+  }
+  
+  /* Form inputs */
+  .contact-card .form-control {
+    background: #f8f9fa; /* Light gray input background */
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    padding: 10px 15px;
+    box-shadow: none;
+  }
+  
+  .contact-card .form-control:focus {
+    background: #ffffff;
+    border-color: #0d6efd; /* Primary color */
+    box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+  }
+  
+  /* Submit button */
+  .contact-card button[type="submit"] {
+    background: linear-gradient(135deg, #83f63b, #b8d825);
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 12px;
+    margin-top: 10px;
+  }
+  
+  .contact-card button[type="submit"]:hover {
+    background: linear-gradient(135deg, #83f63b, #b8d825);
+  }
+  
+  /* Info card texts */
+  .contact-card h5, 
+  .contact-card h6 {
+    color: #0d6efd;
+  }
+  
+  .contact-card p {
+    color: #cbff10;
+    font-weight: 500;
+  }
+  
+  /* Social icons */
+  .contact-card a i {
+    transition: transform 0.3s, color 0.3s;
+  }
+  
+  .contact-card a:hover i {
+    transform: scale(1.2);
+    color: #9afe16;
+  }
+  
