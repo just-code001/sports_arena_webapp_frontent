@@ -20,15 +20,19 @@ const[selectedKeys,setselectedkeys] = useState('/')
            className="Admin_sidemenu_vertical"
            mode="vertical"
            onClick={(item)=>{
-            //item.key
-            navigate(item.key);
+            if (item.key === "/") {
+                sessionStorage.clear();
+                navigate("/");
+              } else {
+                navigate(item.key);
+              }
            }}
            selectedKeys={[selectedKeys]}
            items={[
             {
                 label:"Dashboard",
                 icon:<AppstoreAddOutlined/>,
-                key:"/admin",
+                key:"/admin/dashboard",
             },
             {
                 label:"User",
@@ -37,12 +41,12 @@ const[selectedKeys,setselectedkeys] = useState('/')
             },
             {
                 label:"Client",
-                key:"/Admin/client",
+                key:"/admin/all-clients",
                 icon:<UsergroupAddOutlined/>,
             },
             {
-                label:"upcoming concert",
-                key:"/Admin/upcomingconcert",
+                label:"Sport Category",
+                key:"/admin/sport-category",
                 icon:<DollarCircleOutlined/>,
             },
             {
@@ -81,10 +85,10 @@ const[selectedKeys,setselectedkeys] = useState('/')
                 icon:<CarOutlined />
             },
             {
-                label:"log out",
-                key:"/",
-                icon:<LogoutOutlined />
-            },
+                label: "Log Out",
+                key: "/",
+                icon: <LogoutOutlined />
+              },
             
            ]}>
 

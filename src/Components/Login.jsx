@@ -1,23 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../api calls/api";
 import Swal from "sweetalert2";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import background from "../Photos/test4.jpg";
+import { AuthContext } from "../Auth/context/AuthContext";
 
 const Login = () => {
+  const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     const userData = { email, password };
-    const redirectUrl = await loginUser(userData); // Call loginUser function
 
+    // 👇 just call loginUser and pass login() from context
+    const redirectUrl = await loginUser(userData, login);
     if (redirectUrl) {
-      navigate(redirectUrl); // Redirect based on API response
+      navigate(redirectUrl);
     }
   };
 

@@ -1,0 +1,45 @@
+.Eventmanager_app{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+.Eventmanager_header{
+height: 60px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 4px 20px 4px 12px;
+border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+.Eventmanager_footer{
+height: 50px;
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.EMSlidemenuandPagecontent{
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.eventmanager_sidemenu_vertical{
+    height: 100%;
+}
+
+.eventmanager_sidemenu{
+    height: 100%;
+}
+.Eventmanager_pagecontent{
+    padding-left: 12px;
+
+}
+.order_page{
+
+    padding-left: 12px;
+}

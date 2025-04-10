@@ -1,5 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import { decodeToken } from "../Auth/JwtUtils";
 
 const API_BASE_URL = "https://localhost:7250/api"; // Replace with actual API URL
 
@@ -72,16 +73,43 @@ export const registerUser = async (userData) => {
   };
   
 
-// Login User
-export const loginUser = async (userData) => {
-  try {
-    const response = await axios.post(`${API_BASE_URL}/tblusers/login`, userData);
-    sessionStorage.setItem("token", response.data.token);
-    sessionStorage.setItem("roleId", response.data.roleId);
-    showSuccess("Login successful!");
-    return response.data.redirectUrl;
-  } catch (error) {
-    showError("Invalid Email or Password");
-    return null;
-  }
-};
+  export const loginUser = async (userData, loginFn) => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}/tblusers/login`, userData);
+      const token = response.data.token;
+  
+      // Save token
+      sessionStorage.setItem("token", token);
+  
+      // Decode token
+      const decoded = decodeToken(token);
+      sessionStorage.setItem("user", JSON.stringify(decoded));
+  
+      // ✅ Call AuthContext login()
+      if (loginFn) loginFn(token);
+  
+      // Show success
+      await Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Login successful!",
+        confirmButtonColor: "#ffcc00",
+      });
+  
+      // Role-based redirect
+      const role = decoded?.["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]?.toLowerCase();
+      switch (role) {
+        case "admin":
+          return "/admin/dashboard";
+        case "provider":
+          return "/provider/dashboard";
+        case "user":
+          return "/user/dashboard";
+        default:
+          return "/";
+      }
+    } catch (error) {
+      showError("Invalid Email or Password");
+      return null;
+    }
+  };

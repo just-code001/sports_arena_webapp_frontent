@@ -1,64 +1,62 @@
 import { Space, Table, Typography } from "antd";
 import { useEffect, useState } from "react";
-import { getClient } from "../../API/Api_index";
+import axios from "axios";
 
-function Admin_client(){
-    const [loading, setLoading] = useState(false)
-    const [dataSource, setDataSource] = useState([])
-    
-const fetchAdminClientData = async () => {
-    try {
-        setLoading(true);
-        const res = await getClient();
-        setDataSource(res.client);
-        console.log(res.client)
-    } catch (error) {
-        console.error('Error fetching order:', error);
-        // Handle the error gracefully, e.g., show a message to the user
-    } finally {
-        setLoading(false);
-    }
-};
-useEffect(() => {
+function Admin_client() {
+    const [loading, setLoading] = useState(false);
+    const [dataSource, setDataSource] = useState([]);
 
-    fetchAdminClientData();
-}, []);
-return(
-<div className="Eventmanager_pagecontent">
+    const fetchAdminClientData = async () => {
+        try {
+            setLoading(true);
+            const token = sessionStorage.getItem("token");
+
+            const res = await axios.get("https://localhost:7250/api/Tblusers/Admin/all-clients", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            setDataSource(res.data.data);
+            console.log(res.data.data);
+        } catch (error) {
+            console.error('Error fetching clients:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchAdminClientData();
+    }, []);
+
+    return (
+        <div className="Eventmanager_pagecontent">
             <Space size={20} direction="vertical">
-                <Typography.Title level={4}>Client</Typography.Title>
-
-
-
+                <Typography.Title level={4}>Clients</Typography.Title>
                 <Table
                     loading={loading}
                     columns={[
                         {
-                            title: "first name",
-                            dataIndex: "firstname"
-                        },
-                        {
-                            title: "last name",
-                            dataIndex: "lastname"
+                            title: "Name",
+                            dataIndex: "name",
                         },
                         {
                             title: "Email",
                             dataIndex: "email",
                         },
                         {
-                            title: "Mobile No.",
-                            dataIndex: "phno",
+                            title: "Contact",
+                            dataIndex: "contact",
                         },
                     ]}
                     dataSource={dataSource}
-                    pagination={{
-                        pageSize: 5,
-                    }}
-                ></Table>
+                    pagination={{ pageSize: 5 }}
+                    rowKey="userId"
+                />
             </Space>
         </div>
-        
-);
-
+    );
 }
+
 export default Admin_client;
