@@ -1,15 +1,16 @@
 import React from 'react';
 import background from "../Photos/test4.jpg";
+import { Link } from 'react-router-dom';
 
 const HomeNavbar = () => {
   return (
     <nav className="navbar navbar-expand-lg"
-    //  style={{
-    //   backgroundImage: `url(${background})`,
-    //   backgroundSize: "cover",
-    //   backgroundPosition: "center",
-    //   width: "100%"
-    // }}
+     style={{
+      backgroundImage: `url(${background})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      width: "100%"
+    }}
     >
       <div className="container-fluid mx-5">
         <a className="navbar-brand text-light" href="#">SPORTS ARENA</a>
@@ -19,7 +20,7 @@ const HomeNavbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto"> {/* Aligns items to the left */}
             <li className="nav-item">
-              <a className="nav-link active text-warning" aria-current="page" href="#">HOME</a>
+              <Link to="/about-us" className="nav-link active text-warning" aria-current="page" >HOME</Link>
             </li>
             <li className="nav-item">
               <a className="nav-link text-warning" href="#">PLACE</a>

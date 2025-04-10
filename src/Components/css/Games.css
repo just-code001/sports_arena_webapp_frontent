@@ -1,0 +1,95 @@
+/* Games.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;500;700&display=swap');
+
+.games-main {
+  background: linear-gradient(135deg, #000428, #004e92);
+  min-height: 100vh;
+  padding: 60px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.games-container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.games-heading {
+  text-align: center;
+  color: #ffd700;
+  font-size: 52px;
+  margin-bottom: 50px;
+  font-weight: 800;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+}
+
+.games-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.games-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 50px rgba(255, 215, 0, 0.5);
+}
+
+.games-card-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.games-card-content {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.games-card-title {
+  color: #ffd700;
+  font-size: 28px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.games-card-description {
+  color: #f0f0f0;
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+}
+
+.games-card-button {
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.games-card-button:hover {
+  background: linear-gradient(90deg, #0072ff, #00c6ff);
+  transform: scale(1.05);
+}

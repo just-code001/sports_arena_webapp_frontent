@@ -1,0 +1,77 @@
+/* src/Components/css/GameDetails.css */
+
+.game-details-main {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #007cf0, #00dfd8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+  
+  .game-details-container {
+    background: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-width: 1100px;
+    width: 100%;
+  }
+  
+  .game-details-image {
+    width: 50%;
+    object-fit: cover;
+  }
+  
+  .game-details-content {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+  }
+  
+  .game-details-title {
+    font-size: 2.5rem;
+    color: #007cf0;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .game-details-description {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .game-details-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+  }
+  
+  .game-details-features li {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  
+  .game-details-button {
+    background: #ffbf00;
+    color: #fff;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .game-details-button:hover {
+    background: #ffaa00;
+  }
+  
