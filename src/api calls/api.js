@@ -113,3 +113,47 @@ export const registerUser = async (userData) => {
       return null;
     }
   };
+
+export const sendForgotPasswordEmail = async (email) => {
+  try {
+    const response = await axios.post(
+      "https://localhost:7250/api/Tblusers/forgot-password", // update base URL
+      { email },
+      {
+        headers: {
+          'Content-Type': 'application/json' // ✅ REQUIRED to avoid 415
+        }
+      }
+    );
+
+    if (response.data.success) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Email Sent',
+        text: response.data.message,
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: response.data.message || "Something went wrong!",
+      });
+    }
+  } catch (err) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: err.response?.data?.message || 'Failed to send reset password email.',
+    });
+  }
+};
+
+export const resetPassword = async (payload) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}/Tblusers/reset-password`, payload);
+    return response.data;
+  } catch (error) {
+    console.error("Reset password error:", error);
+    return error.response?.data || { success: false, message: "Something went wrong." };
+  }
+};  

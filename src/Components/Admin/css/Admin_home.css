@@ -1,45 +1,112 @@
-.Admin_app{
-    display: flex;
+.Admin_app {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+}
+
+.Admin_header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 4px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.Admin_footer {
+  height: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.SlidemenuandPagecontent {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.Admin_sidemenu_vertical {
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.Admin_sidemenu {
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.Admin_pagecontent {
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+  background: white;
+  margin: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order_page {
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+  background: white;
+  margin: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Dashboard specific styles */
+.dashboard-container {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .SlidemenuandPagecontent {
     flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+  }
+
+  .Admin_sidemenu {
+    width: 100%;
+    height: auto;
+  }
+
+  .Admin_pagecontent {
+    margin: 4px;
+  }
 }
 
-.Admin_header{
-height: 60px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 20px 20px 4px 12px;
-border-bottom: 1px solid rgba(0,0,0,0.15);
-}
-.Admin_footer{
-height: 50px;
-display: flex;
-justify-content: space-evenly;
-align-items: center;
-border-top: 1px solid rgba(0, 0, 0, 0.15);
+/* Chart container fixes */
+.ant-card .chart-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
 }
 
-.SlidemenuandPagecontent{
-    display: flex;
-    flex: 1;
-    justify-content: flex-start;
-    align-items: flex-start;
-    background-color: rgba(0, 0, 0, 0.05);
-}
-.Admin_sidemenu_vertical{
-    height: 100%;
+/* Ensure proper spacing in cards */
+.ant-card-body {
+  padding: 16px;
 }
 
-.Admin_sidemenu{
-    height: 100%;
+/* Fix for statistics cards */
+.ant-statistic {
+  text-align: center;
 }
-.Admin_pagecontent{
-    padding-left: 12px;
 
-}
-.order_page{
-
-    padding-left: 12px;
+.ant-statistic-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }

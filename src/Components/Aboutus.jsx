@@ -1,123 +1,270 @@
-import React from 'react';
-import { Container, Row, Col, Card, Image } from 'react-bootstrap';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
-import './css/AboutPage.css'; // Custom CSS
+import Navbar from "./Navbar"
+import Footer from "./Footer"
+import { FaUsers, FaTrophy, FaMapMarkerAlt, FaClock } from "react-icons/fa"
+import InquiryForm from "./InquiryForm"
 
-const AboutPage = () => {
+const AboutUs = () => {
+  const stats = [
+    { icon: <FaUsers />, number: "10,000+", label: "Happy Customers", color: "#10b981" },
+    { icon: <FaTrophy />, number: "500+", label: "Sports Venues", color: "#f59e0b" },
+    { icon: <FaMapMarkerAlt />, number: "50+", label: "Cities Covered", color: "#3b82f6" },
+    { icon: <FaClock />, number: "24/7", label: "Customer Support", color: "#ef4444" },
+  ]
+
+  const team = [
+    {
+      name: "Rajesh Kumar",
+      position: "Founder & CEO",
+      image: "/placeholder.svg?height=200&width=200",
+      description: "Former national cricket player with 15+ years in sports management",
+    },
+    {
+      name: "Priya Sharma",
+      position: "Head of Operations",
+      image: "/placeholder.svg?height=200&width=200",
+      description: "Sports facility management expert with MBA from IIM",
+    },
+    {
+      name: "Amit Patel",
+      position: "Technology Lead",
+      image: "/placeholder.svg?height=200&width=200",
+      description: "Full-stack developer passionate about sports and technology",
+    },
+  ]
+
+  const values = [
+    {
+      title: "Quality",
+      description: "We partner only with venues that meet our high standards for facilities and service.",
+      color: "#10b981",
+    },
+    {
+      title: "Accessibility",
+      description: "Making sports accessible to everyone, regardless of skill level or background.",
+      color: "#f59e0b",
+    },
+    {
+      title: "Innovation",
+      description: "Continuously improving our platform with the latest technology and user feedback.",
+      color: "#3b82f6",
+    },
+    {
+      title: "Community",
+      description: "Building a strong sports community that supports and encourages each other.",
+      color: "#ef4444",
+    },
+  ]
+
   return (
-    <div className="about-page-bg">
-      <Container className="py-5">
-        <Row className="align-items-center mb-5">
-          <Col md={6}>
-          <iframe
-    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14875.640029183394!2d72.83973144999999!3d21.2354169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1744023293351!5m2!1sen!2sin"
-    width="100%"
-    height="450"
-    style={{ border: 0, borderRadius: '20px', width: '100%' }}
-    allowFullScreen=""
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-    title="Arena Location Map"
-  ></iframe>
-          </Col>
+    <div className="sports-bg min-vh-100">
+      <Navbar />
 
-          <Col md={6}>
-            <h1 className="about-title">About Us</h1>
-            <p className="about-subtitle">
-              Empowering Excellence in Sports and Event Management
-            </p>
-            <p className="about-description">
-              At Sports Arena Management, we pride ourselves on delivering world-class facilities for athletes and unforgettable experiences for fans. 
-              Our focus is on innovation, community engagement, and professional excellence.
-            </p>
-            <p className="about-description">
-              Whether it's a thrilling sports tournament, a high-energy concert, or a global exhibition, we ensure every event is a resounding success.
-            </p>
-          </Col>
-        </Row>
-
-        <Row className="g-4">
-          <Col md={4}>
-            <Card className="about-card h-100 text-center shadow p-3">
-              <Card.Body>
-                <i className="bi bi-award-fill about-icon"></i>
-                <h5 className="fw-bold mt-3">Top Facilities</h5>
-                <p>State-of-the-art arenas, stadiums, and event spaces built to global standards.</p>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col md={4}>
-            <Card className="about-card h-100 text-center shadow p-3">
-              <Card.Body>
-                <i className="bi bi-people-fill about-icon"></i>
-                <h5 className="fw-bold mt-3">Community Driven</h5>
-                <p>We work hand-in-hand with the local community to inspire the next generation of athletes.</p>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col md={4}>
-            <Card className="about-card h-100 text-center shadow p-3">
-              <Card.Body>
-                <i className="bi bi-globe-americas about-icon"></i>
-                <h5 className="fw-bold mt-3">Global Vision</h5>
-                <p>Hosting international events and building connections that span the world.</p>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-      <footer className="footer-section">
-      <Container>
-        <Row className="gy-4">
-          {/* About Section */}
-          <Col md={4} className="text-center text-md-start">
-            <h5 className="footer-logo">Sports Arena</h5>
-            <p className="small-text">
-              Sports Arena Management provides world-class facilities, training, and event management services for athletes, fans, and organizers. Join us in creating unforgettable sports moments!
-            </p>
-          </Col>
-
-          {/* Quick Links */}
-          <Col md={4} className="text-center">
-            <h6 className="footer-heading">Quick Links</h6>
-            <ul className="footer-links list-unstyled">
-              <li><a href="/">🏠 Home</a></li>
-              <li><a href="/about">📖 About Us</a></li>
-              <li><a href="/events">🏟️ Events</a></li>
-              <li><a href="/contact">✉️ Contact</a></li>
-              <li><a href="/gallery">📸 Gallery</a></li>
-            </ul>
-          </Col>
-
-          {/* Contact + Social */}
-          <Col md={4} className="text-center text-md-end">
-            <h6 className="footer-heading">Contact Us</h6>
-            <p className="small-text"><FaMapMarkerAlt className="icon" /> 123 Arena Street, Cityville, Country</p>
-            <p className="small-text"><FaPhoneAlt className="icon" /> +1 (234) 567-8901</p>
-            <p className="small-text"><FaEnvelope className="icon" /> info@sportsarena.com</p>
-
-            <div className="social-icons mt-3">
-              <a href="#"><FaFacebookF /></a>
-              <a href="#"><FaTwitter /></a>
-              <a href="#"><FaInstagram /></a>
-              <a href="#"><FaLinkedinIn /></a>
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="container">
+          <div className="row justify-content-center text-center">
+            <div className="col-lg-8">
+              <h1 className="display-3 fw-bold mb-4" style={{ color: "#10b981" }}>
+                About Sports Arena
+              </h1>
+              <p className="lead text-white mb-5" style={{ maxWidth: "750px", margin: "0 auto 2.5rem" }}>
+                We're passionate about making sports accessible to everyone. Our platform connects sports enthusiasts
+                with the best venues across India.
+              </p>
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
+      </section>
 
-        <hr className="footer-divider" />
-        <Row>
-          <Col className="text-center small-text">
-            © {new Date().getFullYear()} Sports Arena Management. All rights reserved.
-          </Col>
-        </Row>
-      </Container>
-    </footer>
+      {/* Our Story */}
+      <section className="section-padding">
+        <div className="container">
+          <div className="row align-items-center mb-5">
+            <div className="col-lg-6 mb-4">
+              <div className="glass-card p-3">
+                <img src="/placeholder.svg?height=400&width=600" alt="Our Story" className="w-100 rounded" />
+              </div>
+            </div>
+            <div className="col-lg-6 mb-4">
+              <h2 className="mb-4 fw-bold" style={{ color: "#10b981" }}>
+                Our Story
+              </h2>
+              <p className="text-white mb-3" style={{ lineHeight: "1.6" }}>
+                Sports Arena was founded in 2020 with a simple mission: to make sports venue booking as easy as ordering
+                food online. We noticed that finding and booking quality sports facilities was a major pain point for
+                sports enthusiasts across India.
+              </p>
+              <p className="text-white mb-3" style={{ lineHeight: "1.6" }}>
+                Starting from Mumbai with just 10 cricket grounds, we've grown to become India's largest sports venue
+                booking platform, serving over 10,000 customers across 50+ cities.
+              </p>
+              <p className="text-white" style={{ lineHeight: "1.6" }}>
+                Today, we're proud to offer a diverse range of sports facilities including cricket grounds, football
+                fields, tennis courts, golf courses, and much more.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="section-padding" style={{ background: "rgba(0, 0, 0, 0.3)" }}>
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center mb-5">
+              <h2 className="display-5 fw-bold mb-3" style={{ color: "#10b981" }}>
+                Our Impact
+              </h2>
+              <p className="text-white-50" style={{ maxWidth: "650px", margin: "0 auto" }}>
+                Numbers that showcase our commitment to the sports community
+              </p>
+            </div>
+          </div>
+          <div className="row">
+            {stats.map((stat, index) => (
+              <div key={index} className="col-lg-3 col-md-6 mb-4">
+                <div className="glass-card p-4 text-center h-100">
+                  <div
+                    className="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                    style={{
+                      width: "75px",
+                      height: "75px",
+                      background: stat.color,
+                      color: "#fff",
+                      fontSize: "1.6rem",
+                      boxShadow: `0 8px 25px ${stat.color}40`,
+                    }}
+                  >
+                    {stat.icon}
+                  </div>
+                  <h3 className="text-white fw-bold mb-2" style={{ fontSize: "2.2rem" }}>
+                    {stat.number}
+                  </h3>
+                  <p className="text-white-50 mb-0" style={{ fontSize: "14px" }}>
+                    {stat.label}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="section-padding">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6 mb-4">
+              <div className="glass-card p-4 h-100">
+                <h3 className="mb-3 fw-semibold" style={{ color: "#10b981" }}>
+                  Our Mission
+                </h3>
+                <p className="text-white" style={{ lineHeight: "1.6" }}>
+                  To democratize access to quality sports facilities across India by providing a seamless,
+                  technology-driven platform that connects sports enthusiasts with the best venues in their city.
+                </p>
+                <p className="text-white" style={{ lineHeight: "1.6" }}>
+                  We believe that everyone deserves access to quality sports infrastructure, regardless of their
+                  location or background.
+                </p>
+              </div>
+            </div>
+            <div className="col-lg-6 mb-4">
+              <div className="glass-card p-4 h-100">
+                <h3 className="mb-3 fw-semibold" style={{ color: "#10b981" }}>
+                  Our Vision
+                </h3>
+                <p className="text-white" style={{ lineHeight: "1.6" }}>
+                  To become the go-to platform for sports venue booking across Asia, fostering a healthier and more
+                  active society through easy access to sports facilities.
+                </p>
+                <p className="text-white" style={{ lineHeight: "1.6" }}>
+                  We envision a future where booking a sports venue is as simple as a few taps on your phone.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="section-padding" style={{ background: "rgba(0, 0, 0, 0.3)" }}>
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center mb-5">
+              <h2 className="display-5 fw-bold mb-3" style={{ color: "#10b981" }}>
+                Meet Our Team
+              </h2>
+              <p className="text-white-50" style={{ maxWidth: "650px", margin: "0 auto" }}>
+                The passionate individuals behind Sports Arena
+              </p>
+            </div>
+          </div>
+          <div className="row justify-content-center">
+            {team.map((member, index) => (
+              <div key={index} className="col-lg-4 col-md-6 mb-4">
+                <div className="glass-card p-4 text-center h-100">
+                  <img
+                    src={member.image || "/placeholder.svg"}
+                    alt={member.name}
+                    className="rounded-circle mb-3"
+                    style={{ width: "130px", height: "130px", objectFit: "cover" }}
+                  />
+                  <h5 className="text-white mb-1 fw-semibold">{member.name}</h5>
+                  <p className="mb-3" style={{ fontSize: "14px", color: "#f59e0b" }}>
+                    {member.position}
+                  </p>
+                  <p className="text-white-50" style={{ fontSize: "14px", lineHeight: "1.5" }}>
+                    {member.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="section-padding">
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center mb-5">
+              <h2 className="display-5 fw-bold mb-3" style={{ color: "#10b981" }}>
+                Our Values
+              </h2>
+              <p className="text-white-50" style={{ maxWidth: "650px", margin: "0 auto" }}>
+                The principles that guide everything we do
+              </p>
+            </div>
+          </div>
+          <div className="row">
+            {values.map((value, index) => (
+              <div key={index} className="col-lg-3 col-md-6 mb-4">
+                <div className="glass-card p-4 text-center h-100">
+                  <div
+                    className="rounded-circle mx-auto mb-3"
+                    style={{
+                      width: "65px",
+                      height: "65px",
+                      background: value.color,
+                    }}
+                  ></div>
+                  <h5 className="mb-3 fw-semibold" style={{ color: "#10b981" }}>
+                    {value.title}
+                  </h5>
+                  <p className="text-white" style={{ fontSize: "14px", lineHeight: "1.5" }}>
+                    {value.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
-    
-  );
-};
+  )
+}
 
-export default AboutPage;
+export default AboutUs

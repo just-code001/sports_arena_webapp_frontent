@@ -25,10 +25,6 @@ const FAQs = () => {
 
   return (
     <div className="faq-page">
-      <header className="faq-header">
-        <img src="/logo.png" alt="The Dotball Logo" className="logo" />
-        <button className="slot-button">Check Available Slots</button>
-      </header>
 
       <section className="faq-section">
         <h1 className="faq-title">Frequently Asked Questions</h1>

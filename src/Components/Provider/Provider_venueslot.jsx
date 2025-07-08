@@ -25,6 +25,10 @@ const Provider_venueslot = () => {
   const [editingSlot, setEditingSlot] = useState(null);
   const [form] = Form.useForm();
 
+  const [generateModalVisible, setGenerateModalVisible] = useState(false);
+  const [generateForm] = Form.useForm();
+
+
   const token = sessionStorage.getItem("token");
 
   useEffect(() => {
@@ -191,6 +195,19 @@ const Provider_venueslot = () => {
         Add Slot
       </Button>
 
+      <Button
+        variant="success"
+        className="ms-2 mb-3"
+        onClick={() => {
+          generateForm.resetFields();
+          setGenerateModalVisible(true);
+        }}
+        disabled={!selectedVenue}
+      >
+        Generate Slots
+      </Button>
+
+
       <Table
         rowKey="slotId"
         dataSource={slots}
@@ -231,6 +248,49 @@ const Provider_venueslot = () => {
           </Form.Item>
         </Form>
       </Modal>
+
+      <Modal
+        title="Generate Daily Slots (9 AM - 12 AM)"
+        visible={generateModalVisible}
+        onOk={async () => {
+          try {
+            const values = await generateForm.validateFields();
+            const [from, to] = values.dateRange;
+            await axios.post(
+              "https://localhost:7250/api/Tblvenueslots/Provider/generate-slots",
+              {
+                venueId: selectedVenue,
+                fromDate: from.format("YYYY-MM-DD"),
+                toDate: to.format("YYYY-MM-DD"),
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            );
+            message.success("Slots generated successfully.");
+            setGenerateModalVisible(false);
+            fetchSlots(selectedVenue);
+          } catch (error) {
+            const errorMsg = error.response?.data?.message || "Failed to generate slots.";
+            message.error(errorMsg);
+          }
+        }}
+        onCancel={() => setGenerateModalVisible(false)}
+        okText="Generate"
+      >
+        <Form form={generateForm} layout="vertical">
+          <Form.Item
+            name="dateRange"
+            label="Select Date Range"
+            rules={[{ required: true, message: "Please select date range" }]}
+          >
+            <DatePicker.RangePicker className="w-100" />
+          </Form.Item>
+        </Form>
+      </Modal>
+
     </div>
   );
 };

@@ -191,7 +191,7 @@ const Admin_venueform = (props) => {
                         </div>
                         <div className="mb-1">
                             <label htmlFor="price" className="form-label">Price:</label>
-                            <input type="text" className="form-control" name='price' id="price" value={venueFormData.price} onChange={handleChange} />
+                            <input type="number" min="0" className="form-control" name='price' id="price" value={venueFormData.price} onChange={handleChange} />
                             {errors.price && <span className='text-danger'>{errors.price[0]}</span>}
                         </div>
                         <div className="mb-1">

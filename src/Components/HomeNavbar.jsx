@@ -26,10 +26,10 @@ const HomeNavbar = () => {
               <a className="nav-link text-warning" href="#">PLACE</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-warning" href="#">BOOKING</a>
+              <Link to='/venues' className="nav-link text-warning" >BOOKING</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-warning" href="#">ABOUT US</a>
+              <Link to='/about-us' className="nav-link text-warning">ABOUT US</Link>
             </li>
           </ul>
           <div className="d-flex gap-2"> {/* Adds spacing between buttons */}

@@ -69,9 +69,9 @@ function Admin_pagecontent() {
     //     }
     // };
     // useEffect(() => {
-    
+
     //     fetchClientData();
-        
+
     // }, []);
 
     const countClients = () => client.length;

@@ -1,69 +1,123 @@
-import React, { useState } from 'react';
-import './css/BookingPage.css'; // Importing CSS file
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import './css/BookingPage.css';
 
-const dates = ["Apr 9 Wed", "Apr 10 Thu", "Apr 11 Fri", "Apr 12 Sat", "Apr 13 Sun", "Apr 14 Mon", "Apr 15 Tue"];
+const Booking = () => {
+  const { venueId } = useParams();
+  const [slots, setSlots] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedDate, setSelectedDate] = useState('');
+  const navigate = useNavigate();
 
-const slots = [
-  "12 AM - 1 AM", "1 AM - 2 AM", "2 AM - 3 AM", "3 AM - 4 AM", "4 AM - 5 AM", "5 AM - 6 AM",
-  "6 AM - 7 AM", "7 AM - 8 AM", "8 AM - 9 AM", "9 AM - 10 AM", "10 AM - 11 AM", "11 AM - 12 PM",
-  "12 PM - 1 PM", "1 PM - 2 PM", "2 PM - 3 PM", "3 PM - 4 PM", "4 PM - 5 PM", "5 PM - 6 PM",
-  "6 PM - 7 PM", "7 PM - 8 PM", "8 PM - 9 PM", "9 PM - 10 PM", "10 PM - 11 PM", "11 PM - 12 AM",
-];
+  useEffect(() => {
+    const fetchSlots = async () => {
+      try {
+        const token = sessionStorage.getItem("token");
+        const response = await axios.get(`https://localhost:7250/api/Tblvenueslots/Client/available-slots/${venueId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const allSlots = response.data.data;
+        setSlots(allSlots);
+        if (allSlots.length > 0) {
+          setSelectedDate(allSlots[0].date);
+        }
+      } catch (error) {
+        console.error("Error fetching slots:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-const bookedSlots = ["7 AM - 8 AM", "10 AM - 11 AM", "11 AM - 12 PM", "9 PM - 10 PM", "10 PM - 11 PM"];
+    fetchSlots();
+  }, [venueId]);
 
-function BookingPage() {
-  const [selectedDate, setSelectedDate] = useState(dates[0]);
+  const handleBookSlot = async (slot) => {
+    if (slot.isBooked) return;
+  
+    const token = sessionStorage.getItem("token");
+  
+    try {
+      const response = await axios.post(
+        "https://localhost:7250/api/Tblbookings",
+        {
+          slotId: slot.slotId,
+          payableAmount: slot.priceperhour
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        } 
+      );
+  
+      const booking = response.data.data;
+      // Redirect to payment page with bookingId
+      navigate(`/payment/${booking.bookingId}`);
 
-  const isBooked = (time) => bookedSlots.includes(time);
-
-  const getPrice = (time) => {
-    const hour = parseInt(time.split(' ')[0]);
-    return (hour >= 8 && hour <= 17) ? 700 : 1000; // Morning/Evening Rs.700, Night Rs.1000
+    } catch (error) {
+      console.error("Error creating booking:", error);
+      alert("Failed to book slot.");
+    }
   };
+  
+
+  // Extract unique dates from slots
+  const uniqueDates = [...new Set(slots.map(slot => slot.date))];
+
+  // Filter slots for the selected date
+  const filteredSlots = slots.filter(slot => slot.date === selectedDate);
 
   return (
     <div className="booking-page">
       {/* Header */}
-      <div className="header">
+      {/* <div className="header">
         <img src="/logo.png" alt="DotBall Logo" className="logo" />
         <button className="check-slots-btn">Check Available Slots</button>
-      </div>
+      </div> */}
 
       {/* Date Selector */}
       <div className="date-selector">
-        {dates.map(date => (
+        {uniqueDates.map(date => (
           <div
             key={date}
             className={`date-item ${selectedDate === date ? 'active' : ''}`}
             onClick={() => setSelectedDate(date)}
           >
-            {date}
+            {new Date(date).toDateString()}
           </div>
         ))}
       </div>
 
-      {/* Slots Grid */}
-      <div className="slots-grid">
-        {slots.map(time => (
-          <div className="slot-card" key={time}>
-            <div className="slot-time">{time}</div>
-            <div className="slot-options">
-              {[1, 2].map((court) => (
+      {/* Slot Cards */}
+      {loading ? (
+        <p style={{ color: 'white' }}>Loading slots...</p>
+      ) : filteredSlots.length === 0 ? (
+        <p style={{ color: 'white' }}>No available slots for selected date.</p>
+      ) : (
+        <div className="slots-grid">
+          {filteredSlots.map((slot) => (
+            <div key={slot.slotId} className="slot-card">
+              <div className="slot-time">
+                {slot.startTime} - {slot.endTime}
+              </div>
+              <div className="slot-options">
                 <div
-                  key={court}
-                  className={`slot-option ${isBooked(time) ? 'booked' : ''}`}
+                  className={`slot-option ${slot.isBooked ? 'booked' : ''}`}
+                  onClick={() => handleBookSlot(slot)}
+                  style={{ cursor: slot.isBooked ? 'not-allowed' : 'pointer' }}
                 >
-                  {isBooked(time) ? 'Booked!' : `₹${getPrice(time)}`}
+                  {slot.isBooked ? 'Booked!' : `₹${slot.priceperhour}`}
                 </div>
-              ))}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-      
+          ))}
+        </div>
+      )}
     </div>
   );
-}
+};
 
-export default BookingPage;
+export default Booking;

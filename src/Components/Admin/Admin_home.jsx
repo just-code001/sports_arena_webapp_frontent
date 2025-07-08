@@ -5,6 +5,7 @@ import Admin_sidemenu from "./Admin_sidemenu";
 import Admin_pagecontent from "./Admin_pagecontent";
 import Admin_footer from "./Admin_footer";
 import PaymentPage from "./PaymentPage";
+import Admin_dashboard from "./Admin_dashboard";
 
 function Admin_home() {
     return (
@@ -12,7 +13,7 @@ function Admin_home() {
             <Admin_header />
             <div className="SlidemenuandPagecontent">
                 <Admin_sidemenu />
-                <Admin_pagecontent />
+                <Admin_dashboard/>
             </div>
             <Admin_footer />
         </div>

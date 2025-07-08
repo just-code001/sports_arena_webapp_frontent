@@ -1,45 +1,198 @@
-.Eventmanager_app{
-    display: flex;
+.Eventmanager_app {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+}
+
+.Eventmanager_header {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 20px 4px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.Eventmanager_footer {
+  height: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.EMSlidemenuandPagecontent {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.eventmanager_sidemenu_vertical {
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.eventmanager_sidemenu {
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.Eventmanager_pagecontent {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  background: #f0f2f5;
+}
+
+.EMPagecontent {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+/* Provider Dashboard Specific Styles */
+.provider-dashboard-content {
+  width: 100%;
+  max-width: 100%;
+}
+
+.provider-dashboard-content .ant-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+.provider-dashboard-content .ant-card-head {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 12px 16px;
+}
+
+.provider-dashboard-content .ant-card-body {
+  padding: 16px;
+}
+
+.provider-dashboard-content .ant-statistic-title {
+  font-size: 12px;
+  color: #8c8c8c;
+  margin-bottom: 4px;
+}
+
+.provider-dashboard-content .ant-statistic-content {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.provider-dashboard-content .ant-table-wrapper {
+  overflow-x: auto;
+}
+
+.provider-dashboard-content .ant-table-small {
+  font-size: 12px;
+}
+
+.provider-dashboard-content .ant-table-small .ant-table-thead > tr > th {
+  padding: 8px;
+  font-weight: 600;
+  background: #fafafa;
+}
+
+.provider-dashboard-content .ant-table-small .ant-table-tbody > tr > td {
+  padding: 8px;
+}
+
+.provider-dashboard-content .ant-progress-line {
+  margin: 0;
+}
+
+.provider-dashboard-content .ant-progress-text {
+  font-size: 12px;
+}
+
+/* Chart Container */
+.provider-dashboard-content .ant-card .chart-container {
+  height: 300px;
+  width: 100%;
+  position: relative;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .EMSlidemenuandPagecontent {
     flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+  }
+
+  .eventmanager_sidemenu {
+    width: 100%;
+    height: auto;
+  }
+
+  .Eventmanager_pagecontent {
+    padding: 12px;
+  }
+
+  .provider-dashboard-content .ant-col {
+    margin-bottom: 12px;
+  }
+
+  .provider-dashboard-content .ant-card-body {
+    padding: 12px;
+  }
 }
 
-.Eventmanager_header{
-height: 60px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 4px 20px 4px 12px;
-border-bottom: 1px solid rgba(0,0,0,0.15);
-}
-.Eventmanager_footer{
-height: 50px;
-display: flex;
-justify-content: space-evenly;
-align-items: center;
-border-top: 1px solid rgba(0, 0, 0, 0.15);
+@media (max-width: 576px) {
+  .Eventmanager_pagecontent {
+    padding: 8px;
+  }
+
+  .provider-dashboard-content .ant-statistic-content {
+    font-size: 16px;
+  }
+
+  .provider-dashboard-content .ant-card-head {
+    padding: 8px 12px;
+  }
+
+  .provider-dashboard-content .ant-card-body {
+    padding: 8px;
+  }
 }
 
-.EMSlidemenuandPagecontent{
-    display: flex;
-    flex: 1;
-    justify-content: flex-start;
-    align-items: flex-start;
-    background-color: rgba(0, 0, 0, 0.05);
-}
-.eventmanager_sidemenu_vertical{
-    height: 100%;
+/* Loading and Error States */
+.provider-dashboard-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  flex-direction: column;
 }
 
-.eventmanager_sidemenu{
-    height: 100%;
+.provider-dashboard-error {
+  margin: 20px;
 }
-.Eventmanager_pagecontent{
-    padding-left: 12px;
 
+/* Utility Classes */
+.text-center {
+  text-align: center;
 }
-.order_page{
 
-    padding-left: 12px;
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.order_page {
+  padding-left: 12px;
 }

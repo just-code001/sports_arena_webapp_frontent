@@ -1,148 +1,136 @@
-import React,{ useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  FaFootballBall,
-  FaUserCircle,
-  FaSignOutAlt,
-} from "react-icons/fa";
-import {
-  MdSportsCricket,
-  MdOutlineSportsTennis,
-  MdGolfCourse,
-} from "react-icons/md";
-import { GiTennisCourt } from "react-icons/gi";
-import { BsPersonFill } from "react-icons/bs";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./css/Navbar.css";
-import { getUserRole, isAuthenticated } from "../Auth/JwtUtils";
-import { AuthContext } from "../Auth/context/AuthContext";
+"use client"
+
+import { useContext } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { FaUserCircle, FaSignOutAlt, FaBars } from "react-icons/fa"
+import { MdSportsCricket } from "react-icons/md"
+import { AuthContext } from "../Auth/context/AuthContext"
 
 const Navbar = () => {
-  const navigate = useNavigate();
-  // const auth = isAuthenticated();
-  // const role = getUserRole();
-  const { isAuthenticated, userRole, logout } = useContext(AuthContext);
+  const navigate = useNavigate()
+  const { isAuthenticated, userRole, logout } = useContext(AuthContext)
 
   const handleLogout = () => {
-    logout();
-    navigate("/"); // go to guest homepage
-  };
+    logout()
+    navigate("/")
+  }
 
   return (
     <nav className="navbar navbar-expand-lg fixed-top">
       <div className="container">
+        {/* Brand */}
         <Link className="navbar-brand d-flex align-items-center" to="/">
-          <MdSportsCricket size={30} className="me-2 text-warning" />
+          <div
+            className="d-flex align-items-center justify-content-center me-3"
+            style={{
+              width: "42px",
+              height: "42px",
+              background: "linear-gradient(135deg, #10b981, #f59e0b)",
+              borderRadius: "12px",
+              color: "#fff",
+              boxShadow: "0 4px 15px rgba(16, 185, 129, 0.4)",
+            }}
+          >
+            <MdSportsCricket size={24} />
+          </div>
           <span className="brand-text">Sports Arena</span>
         </Link>
 
+        {/* Mobile Toggle */}
         <button
-          className="navbar-toggler"
+          className="navbar-toggler border-0"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
+          style={{ color: "#10b981" }}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
-            fill="yellow"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fillRule="evenodd"
-              d="M2 12h12v-1H2v1zm0-4h12V7H2v1zm0-5v1h12V3H2z"
-            />
-          </svg>
+          <FaBars size={20} />
         </button>
 
+        {/* Navigation Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
+          <ul className="navbar-nav ms-auto align-items-center">
+            <li className="nav-item">
+              <Link className="nav-link custom-nav-link" to="/">
+                Home
+              </Link>
+            </li>
 
-            {/* CLIENT NAV LINKS */}
             {isAuthenticated && userRole === "client" && (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link custom-nav-link" to="/cricket">
-                    <MdSportsCricket size={20} /> Cricket
+                  <Link className="nav-link custom-nav-link" to="/venues">
+                    Venues
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link custom-nav-link" to="/football">
-                    <FaFootballBall size={20} /> Football
+                  <Link className="nav-link custom-nav-link" to="/about-us">
+                    About
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link custom-nav-link" to="/golf">
-                    <MdGolfCourse size={20} /> Golf
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link custom-nav-link" to="/pickleball">
-                    <GiTennisCourt size={20} /> Pickleball
+                  <Link className="nav-link custom-nav-link" to="/contact-us">
+                    Contact
                   </Link>
                 </li>
               </>
             )}
 
-            {/* PROFILE & LOGOUT */}
             {isAuthenticated ? (
-              <li className="nav-item dropdown">
+              <li className="nav-item dropdown ms-3">
                 <button
-                  className="nav-link dropdown-toggle profile-btn"
+                  className="nav-link dropdown-toggle d-flex align-items-center"
                   data-bs-toggle="dropdown"
+                  style={{
+                    background: "rgba(16, 185, 129, 0.15)",
+                    border: "1px solid rgba(16, 185, 129, 0.4)",
+                    borderRadius: "10px",
+                    padding: "10px 18px",
+                    color: "#10b981",
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: "14px",
+                    fontWeight: "600",
+                  }}
                 >
-                  <FaUserCircle size={20} /> Profile
+                  <FaUserCircle size={18} className="me-2" />
+                  Profile
                 </button>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      to={
-                        userRole === "admin"
-                          ? "/admin/dashboard"
-                          : userRole === "provider"
-                          ? "/provider/dashboard"
-                          : "/client/dashboard"
-                      }
-                    >
-                      <BsPersonFill size={18} /> Dashboard
-                    </Link>
-                  </li>
+                <ul
+                  className="dropdown-menu dropdown-menu-end"
+                  style={{ background: "rgba(0, 0, 0, 0.9)", border: "1px solid rgba(16, 185, 129, 0.4)" }}
+                >
                   <li>
                     <button
-                      className="dropdown-item text-danger"
+                      className="dropdown-item text-danger d-flex align-items-center"
                       onClick={handleLogout}
+                      style={{ fontFamily: "Inter, sans-serif", fontSize: "14px" }}
                     >
-                      <FaSignOutAlt size={18} /> Logout
+                      <FaSignOutAlt size={16} className="me-2" />
+                      Logout
                     </button>
+                  </li>
+                  <li>
+                    <Link className="nav-link login-btn" to="/my-bookings">
+                      My Bookings
+                    </Link>
                   </li>
                 </ul>
               </li>
             ) : (
-              <>
-              <li className="nav-item">
-                  <Link className="nav-link custom-nav-link" to="/">
-                    <GiTennisCourt size={20} /> Home
-                  </Link>
-                </li>
-                <li className="nav-item mx-2">
-                  <Link className="nav-link login-btn" to="/login">
-                    Login
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link register-btn" to="/register">
-                    Sign Up
-                  </Link>
-                </li>
-              </>
+              <div className="d-flex gap-2 ms-3">
+                <Link className="nav-link login-btn" to="/login">
+                  Login
+                </Link>
+                <Link className="nav-link register-btn" to="/register">
+                  Sign Up
+                </Link>
+              </div>
             )}
           </ul>
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

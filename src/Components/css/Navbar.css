@@ -1,6 +1,6 @@
 /* Transparent Navbar */
 .navbar {
-    background: rgba(0, 0, 0, 0.6); 
+    background: rgba(0, 0, 0, 1); 
     backdrop-filter: blur(3px);
     padding: 12px 20px;
     transition: all 0.3s ease-in-out;

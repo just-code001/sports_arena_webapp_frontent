@@ -1,92 +1,158 @@
-import React from 'react';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
-import './css/ContactPage.css'; // Import custom CSS
+"use client"
 
-const ContactPage = () => {
+import { useState } from "react"
+import Navbar from "./Navbar"
+import {
+  FaPhone,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaClock,
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+} from "react-icons/fa"
+import Swal from "sweetalert2"
+import InquiryForm from "./InquiryForm"
+
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  })
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    // Mock form submission
+    Swal.fire({
+      icon: "success",
+      title: "Message Sent!",
+      text: "Thank you for contacting us. We will get back to you within 24 hours.",
+      confirmButtonColor: "#22c55e",
+      background: "linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(5, 46, 22, 0.9))",
+      color: "#fff",
+    })
+
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    })
+  }
+
+  const contactInfo = [
+    {
+      icon: <FaPhone />,
+      title: "Phone",
+      details: ["+91 98765 43210", "+91 87654 32109"],
+      description: "Call us for immediate assistance",
+      color: "#22c55e",
+    },
+    {
+      icon: <FaEnvelope />,
+      title: "Email",
+      details: ["info@sportsarena.com", "support@sportsarena.com"],
+      description: "Send us your queries anytime",
+      color: "#f97316",
+    },
+    {
+      icon: <FaMapMarkerAlt />,
+      title: "Address",
+      details: ["123 Sports Complex", "Andheri West, Mumbai - 400058"],
+      description: "Visit our headquarters",
+      color: "#eab308",
+    },
+    {
+      icon: <FaClock />,
+      title: "Business Hours",
+      details: ["Mon - Fri: 9:00 AM - 8:00 PM", "Sat - Sun: 10:00 AM - 6:00 PM"],
+      description: "We're here to help",
+      color: "#84cc16",
+    },
+  ]
+
+  const socialLinks = [
+    { icon: <FaFacebook />, name: "Facebook", url: "#", color: "#1877f2" },
+    { icon: <FaTwitter />, name: "Twitter", url: "#", color: "#1da1f2" },
+    { icon: <FaInstagram />, name: "Instagram", url: "#", color: "#e4405f" },
+    { icon: <FaLinkedin />, name: "LinkedIn", url: "#", color: "#0077b5" },
+  ]
+
   return (
-    <div className="contact-page-bg">
-      <Container className="py-5">
-        <Row className="mb-4 text-center text-white">
-          <Col>
-            <h2 className="fw-bold">Contact Us</h2>
-            <p className="text-light">We'd love to hear from you. Reach out with any questions or feedback!</p>
-          </Col>
-        </Row>
+    <div className="sports-bg min-vh-100">
+      <Navbar />
 
-        <Row>
-          <Col md={6}>
-            <Card className="p-4 shadow contact-card">
-              <Form>
-                <Form.Group className="mb-3" controlId="formName">
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control type="text" placeholder="Enter your name" required />
-                </Form.Group>
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="container">
+          <div className="row justify-content-center text-center">
+            <div className="col-lg-8">
+              <h1 className="display-3 fw-bold mb-4" style={{ color: "#22c55e" }}>
+                Contact Us
+              </h1>
+              <p className="lead text-white mb-5" style={{ maxWidth: "700px", margin: "0 auto 2rem" }}>
+                Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                <Form.Group className="mb-3" controlId="formEmail">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Enter your email" required />
-                </Form.Group>
+      {/* Contact Information */}
+      <section className="section-padding">
+        <div className="container">
+          <div className="row mb-5">
+            {contactInfo.map((info, index) => (
+              <div key={index} className="col-lg-3 col-md-6 mb-4">
+                <div className="glass-card p-4 text-center h-100">
+                  <div
+                    className="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      background: info.color,
+                      color: "#fff",
+                      fontSize: "1.2rem",
+                    }}
+                  >
+                    {info.icon}
+                  </div>
+                  <h5 className="text-white mb-3 fw-semibold">{info.title}</h5>
+                  {info.details.map((detail, idx) => (
+                    <p key={idx} className="text-white mb-1" style={{ fontSize: "14px" }}>
+                      {detail}
+                    </p>
+                  ))}
+                  <p className="text-white-50 mt-2" style={{ fontSize: "12px" }}>
+                    {info.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                <Form.Group className="mb-3" controlId="formSubject">
-                  <Form.Label>Subject</Form.Label>
-                  <Form.Control type="text" placeholder="Subject" />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formMessage">
-                  <Form.Label>Message</Form.Label>
-                  <Form.Control as="textarea" rows={5} placeholder="Your message..." required />
-                </Form.Group>
-
-                <Button variant="primary" type="submit" className="w-100">
-                  Send Message
-                </Button>
-              </Form>
-            </Card>
-          </Col>
-
-          <Col md={6} className="mt-4 mt-md-0">
-          <Card className="p-4 h-100 shadow contact-card text-center">
-  <h5 className="fw-bold mb-3">Arena Location</h5>
-  <p>🏟️ <strong>Sports Arena Complex</strong></p>
-  <p>123 Arena Road, City Name, State, 12345</p>
-  <p>📞 +1 (234) 567-8901</p>
-  <p>📧 support@sportsarena.com</p>
-
-  {/* <hr className="my-4" /> */}
-{/* 
-  <h6 className="fw-bold mb-2">Opening Hours</h6>
-  <p>🕒 Monday - Friday: 9:00 AM - 8:00 PM</p>
-  <p>🕒 Saturday - Sunday: 10:00 AM - 6:00 PM</p> */}
-
-  <hr className="my-4" />
-
-  <h6 className="fw-bold mb-2">Facilities Available</h6>
-  <p>🏀 Basketball Courts</p>
-  <p>⚽ Soccer Fields</p>
-  <p>🎾 Tennis Courts</p>
-  <p>🏋️ Fitness Center</p>
-
-  <hr className="my-4" />
-
-  <h6 className="fw-bold mb-2">Follow Us</h6>
-  <div className="d-flex justify-content-center gap-3">
-    <a href="#" className="text-decoration-none text-primary">
-      <i className="bi bi-facebook fs-4"></i>
-    </a>
-    <a href="#" className="text-decoration-none text-info">
-      <i className="bi bi-twitter fs-4"></i>
-    </a>
-    <a href="#" className="text-decoration-none text-danger">
-      <i className="bi bi-instagram fs-4"></i>
-    </a>
-  </div>
-</Card>
-
-          </Col>
-        </Row>
-      </Container>
+      {/* Contact Form & Additional Info */}
+      <section className="section-padding" style={{ background: "rgba(0, 0, 0, 0.3)" }}>
+        <InquiryForm/>
+      </section>
     </div>
-  );
-};
+  )
+}
 
-export default ContactPage;
+export default Contact
